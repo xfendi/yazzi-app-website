@@ -37,6 +37,7 @@ const NavBar = () => {
         </Link>
 
         <button
+          name="open nav menu button"
           onClick={() => setShowMenu(true)}
           className={width < 768 ? "flex" : "hidden"}
         >

@@ -31,7 +31,10 @@ const Footer = () => {
         Pssst. Available now!
       </p>
 
-      <Link href="/download" className="btn-outline primary big rounded !w-max mt-5 md:mt-0">
+      <Link
+        href="/download"
+        className="btn-outline primary big rounded !w-max mt-5 md:mt-0"
+      >
         Download App
       </Link>
 
@@ -45,6 +48,7 @@ const Footer = () => {
             <a
               key={i}
               href={s.link}
+              title="social link"
               className="btn-outline aspect-square rounded flex items-center justify-center !p-[10px]"
             >
               {s.icon}

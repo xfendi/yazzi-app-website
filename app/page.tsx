@@ -7,7 +7,6 @@ import NavBar from "@/components/NavBar";
 import Features from "@/components/Features";
 import PublicProfiles from "@/components/PublicProfiles";
 import WhatWeAre from "@/components/WhatWeAre";
-import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 
 const HomePage = () => {
@@ -20,7 +19,6 @@ const HomePage = () => {
       <WhatWeAre />
       <PublicProfiles />
 
-  
       <Footer />
     </div>
   );
