@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #1dba55;
+  --color-primary-dark: #127334;
+  --color-primary-opacity: rgba(29, 186, 85, 0.25);
+
+  --color-opacity: rgba(255, 255, 255, 0.05);
+
+  --border-secondary: rgba(255, 255, 255, 0.05);
+}
+
+.btn-outline {
+  padding: 8px 16px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-outline {
+  border: 2px solid var(--border-secondary);
+}
+
+.btn-outline.big {
+  padding: 12px 32px;
+  border-radius: 15px;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .btn-outline.big {
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+}
+
+.btn-outline.rounded {
+  @apply !rounded-full;
+}
+
+.btn-outline.primary {
+  background-color: var(--color-primary-opacity);
+  border: 2px solid var(--color-primary-dark);
+}
+
+.btn-outline.light {
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.55);
+}
+
+.btn-outline.light:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+}
+
+.btn-outline.primary:hover {
+  background-color: rgba(29, 186, 85, 0.35) !important;
+  border: 2px solid var(--color-primary-dark);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-opacity);
+}
+
+.divider {
+  width: 100%;
+  border-top: 1px solid var(--border-secondary);
+}
