@@ -3,7 +3,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <section data-aos="fade-up" className="!pb-0 !pt-[100px]">
+    <section data-aos="fade-up" className="md:!pb-0 !pt-[100px]">
       <div className="icon-stack">
         <div className="layer layer3 bg-neutral-900"></div>
         <div className="layer layer2 bg-neutral-800"></div>

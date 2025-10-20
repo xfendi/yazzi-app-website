@@ -2,11 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IoOpenOutline } from "react-icons/io5";
 
 import { motion, useTransform, useScroll } from "framer-motion";
-import { useRef } from "react";
 
 export type PublicProfileDisplayType = {
   photoURL: string;
@@ -27,6 +26,16 @@ export type PublicProfileDisplayType = {
 };
 
 const PublicProfiles = () => {
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const placeholderProfile: PublicProfileDisplayType = {
     photoURL: "https://i.imgur.com/EckYk5C.jpeg",
     name: "Fro zi ak",
@@ -49,7 +58,7 @@ const PublicProfiles = () => {
     Array(5).fill(placeholderProfile);
 
   return (
-    <section data-aos="fade-up">
+    <section data-aos="fade-up" className={`${width < 768 && "!pb-0"}`}>
       <div className="text-4xl md:text-6xl font-bold max-w-5xl">
         Explore Popular Public Profiles
       </div>
@@ -58,8 +67,28 @@ const PublicProfiles = () => {
         community. Get inspired by how others share their music and style.
       </div>
 
-      <HorizontalScrollCarousel profilesData={placeholderProfiles} />
+      {width < 768 ? (
+        <MobileView profilesData={placeholderProfiles} />
+      ) : (
+        <HorizontalScrollCarousel profilesData={placeholderProfiles} />
+      )}
     </section>
+  );
+};
+
+const MobileView = ({
+  profilesData,
+}: {
+  profilesData: PublicProfileDisplayType[];
+}) => {
+  return (
+    <div className="flex-1 flex flex-col gap-[25px] w-full">
+      {profilesData.map((p, i) => (
+        <div data-aos="fade-up" data-aos-delay={i * 100 + 300}>
+          <ProfileCard p={p} key={i} />
+        </div>
+      ))}
+    </div>
   );
 };
 

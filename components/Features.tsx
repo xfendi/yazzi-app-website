@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "@/styles/features.scss";
 
@@ -55,12 +57,47 @@ const cardsData = [
 ];
 
 const Features = () => {
-  return (
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return width < 768 ? (
+    <section id="features" className="!pb-0">
+      <div className="flex flex-col gap-[25px]">
+        {cardsData.map((c, i) => (
+          <MobileCard data={c} key={i} />
+        ))}
+      </div>
+    </section>
+  ) : (
     <section className="!py-0" id="features">
       {cardsData.map((c, i) => (
         <Card data={c} i={i} key={i} />
       ))}
     </section>
+  );
+};
+
+const MobileCard = ({ data }: { data: any }) => {
+  return (
+    <div
+      className={`flex flex-col gap-10 items-center w-full p-5 !pt-10 rounded-[20px] ${data.colorClass}`}
+    >
+      <div className="flex-1 flex flex-col gap-5 items-center text-center">
+        <div className="text-2xl md:text-4xl font-semibold">{data.title}</div>
+        <div className="!text-stone-200 text-md">{data.description}</div>
+      </div>
+
+      <div className="w-full aspect-square flex-1 bg-neutral-950 rounded-[15px] h-full">
+        {data.content}
+      </div>
+    </div>
   );
 };
 
