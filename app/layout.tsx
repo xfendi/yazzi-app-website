@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+
+import AOSInitializer from "@/components/AOSInitializer";
 
 import "./globals.css";
-import AOSInitializer from "@/components/AOSInitializer";
 
 export const metadata: Metadata = {
   title: "Yazzi App",
@@ -16,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-neutral-950 text-white">
+        <Analytics />
         <AOSInitializer />
         {children}
       </body>
