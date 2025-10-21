@@ -58,7 +58,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-neutral-950 text-white">
+      <body className="bg-neutral-950 text-white overflow-x-hidden">
         <Analytics />
         <AOSInitializer />
         {children}

@@ -84,8 +84,8 @@ const MobileView = ({
   return (
     <div className="flex-1 flex flex-col gap-[25px] w-full">
       {profilesData.map((p, i) => (
-        <div data-aos="fade-up" data-aos-delay={i * 100 + 300}>
-          <ProfileCard p={p} key={i} />
+        <div key={i} data-aos="fade-up" data-aos-delay={i * 100 + 300}>
+          <ProfileCard p={p} />
         </div>
       ))}
     </div>
