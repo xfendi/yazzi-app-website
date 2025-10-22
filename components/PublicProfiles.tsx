@@ -36,26 +36,34 @@ const PublicProfiles = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const placeholderProfile: PublicProfileDisplayType = {
-    photoURL: "https://i.imgur.com/EckYk5C.jpeg",
-    name: "Fro zi ak",
-    username: "fendziorr",
+  const [profiles, setProfiles] = useState<PublicProfileDisplayType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
-    verified: true,
-
-    reactionsCount: 125,
-    starsCount: 15,
-
-    recentPlayedTracks: Array(4).fill({
-      artist: "Oki",
-      image: "https://i.scdn.co/image/ab67616d0000b273f9f11a7e2e02afa1301c260e",
-      name: "JESTEŚMY ZA MŁODZI",
-      spotifyId: "4pnnjYVnTpWRFhtWSWE5ad",
-    }),
-  };
-
-  const placeholderProfiles: PublicProfileDisplayType[] =
-    Array(5).fill(placeholderProfile);
+  useEffect(() => {
+    const load = async () => {
+      setIsLoading(true);
+      setNotFound(false);
+      try {
+        const res = await fetch("/api/public-profiles", { cache: "no-store" });
+        const json = await res.json();
+        if (json.ok && Array.isArray(json.data) && json.data.length > 0) {
+          setProfiles(json.data);
+          setNotFound(false);
+        } else {
+          setProfiles([]);
+          setNotFound(true);
+        }
+      } catch (err) {
+        console.error(err);
+        setProfiles([]);
+        setNotFound(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    load();
+  }, []);
 
   return (
     <section data-aos="fade-up" className={`${width < 768 && "!pb-0"}`}>
@@ -67,10 +75,18 @@ const PublicProfiles = () => {
         community. Get inspired by how others share their music and style.
       </div>
 
-      {width < 768 ? (
-        <MobileView profilesData={placeholderProfiles} />
+      {isLoading ? (
+        <div className="p-2 px-4 text-neutral-300 bg-neutral-900 rounded-[10px]">
+          Loading profiles…
+        </div>
+      ) : notFound ? (
+        <div className="p-2 px-4 text-neutral-300 bg-neutral-900 rounded-[10px]">
+          No public profiles found.
+        </div>
+      ) : width < 768 ? (
+        <MobileView profilesData={profiles} />
       ) : (
-        <HorizontalScrollCarousel profilesData={placeholderProfiles} />
+        <HorizontalScrollCarousel profilesData={profiles} />
       )}
     </section>
   );
