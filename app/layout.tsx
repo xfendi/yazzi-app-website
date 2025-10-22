@@ -4,7 +4,10 @@ import AOSInitializer from "@/components/AOSInitializer";
 import ConvexProviderClient from "@/components/ConvexClient";
 import { Toaster } from "react-hot-toast";
 
+import SoonPage from "@/components/SoonPage";
+
 import "./globals.css";
+import "@/styles/landing.css";
 
 export const metadata: Metadata = {
   title: {
@@ -58,13 +61,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isWebsiteSoon =
+    process.env.NEXT_PUBLIC_IS_WEBSITE_SOON === "true" ? true : false;
+
   return (
     <html lang="en">
       <body className="bg-neutral-950 text-white overflow-x-hidden">
         <Analytics />
         <AOSInitializer />
         <Toaster position="bottom-right" reverseOrder={false} />
-        <ConvexProviderClient>{children}</ConvexProviderClient>
+        <ConvexProviderClient>
+          {isWebsiteSoon ? <SoonPage /> : children}
+        </ConvexProviderClient>
       </body>
     </html>
   );

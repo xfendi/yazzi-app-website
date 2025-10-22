@@ -1,7 +1,5 @@
 import React from "react";
 
-import "@/styles/landing.css";
-
 import Header from "@/components/Header";
 import NavBar from "@/components/NavBar";
 import Features from "@/components/Features";
