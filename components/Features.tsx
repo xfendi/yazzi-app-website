@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 import "@/styles/features.scss";
+import Image from "next/image";
 
 const cardsData = [
   {
@@ -16,7 +17,33 @@ const cardsData = [
       </Link>
     ),
     colorClass: "bg-blue-900",
-    content: <></>,
+    content: (
+      <div className="relative w-full h-full flex flex-col items-center gap-5 rounded-[15px] scale-110 bottom-[20px]">
+        {Array.from({ length: 3 }).map((_, rowIndex) => (
+          <div
+            key={rowIndex}
+            className="flex-1 h-1/3 flex w-full justify-center gap-5"
+          >
+            {Array.from({ length: rowIndex === 1 ? 3 : 2 }).map(
+              (_, colIndex) => {
+                const index = rowIndex * 3 + colIndex;
+                const imageIndex = rowIndex === 0 ? index + 1 : index;
+                return (
+                  <Image
+                    key={index}
+                    src={`/features/players/${imageIndex}.png`}
+                    alt={`player image nr. ${imageIndex}`}
+                    className="object-cover transition-transform duration-300 hover:scale-105 h-full rounded-[10px]"
+                    width={1000}
+                    height={475}
+                  />
+                );
+              }
+            )}
+          </div>
+        ))}
+      </div>
+    ),
   },
   {
     title: "Check music matches and statistics",
@@ -40,7 +67,17 @@ const cardsData = [
       </Link>
     ),
     colorClass: "bg-green-900",
-    content: <></>,
+    content: (
+      <div className="relative w-full h-full flex items-center justify-center rounded-[15px] overflow-hidden">
+        <Image
+          src={`/features/screens/status.png`}
+          alt={`music status screenshot`}
+          width={1206}
+          height={871}
+          className="h-2/3 w-auto object-contain transition-transform duration-300 hover:scale-105"
+        />
+      </div>
+    ),
   },
   {
     title: "Keep your status streak alive",
@@ -52,7 +89,24 @@ const cardsData = [
       </Link>
     ),
     colorClass: "bg-yellow-800",
-    content: <></>,
+    content: (
+      <div className="relative w-full h-full flex items-start justify-center rounded-[15px] overflow-hidden">
+        <Image
+          src={`/features/screens/status-streak.png`}
+          alt={`music status screenshot`}
+          width={1206}
+          height={1623}
+          className="h-full w-1/2 object-contain"
+        />
+        <Image
+          src={`/features/screens/profile-streak.png`}
+          alt={`music status screenshot`}
+          width={1206}
+          height={1623}
+          className="h-1/2 w-1/2 object-contain"
+        />
+      </div>
+    ),
   },
 ];
 
@@ -68,12 +122,10 @@ const Features = () => {
   }, []);
 
   return width < 768 ? (
-    <section id="features" className="!pb-0">
-      <div className="flex flex-col gap-[25px]">
-        {cardsData.map((c, i) => (
-          <MobileCard data={c} key={i} />
-        ))}
-      </div>
+    <section id="features" className="flex flex-col gap-[25px] !pb-0">
+      {cardsData.map((c, i) => (
+        <MobileCard data={c} key={i} />
+      ))}
     </section>
   ) : (
     <section className="!py-0" id="features">
@@ -94,7 +146,7 @@ const MobileCard = ({ data }: { data: any }) => {
         <div className="!text-stone-200 text-md">{data.description}</div>
       </div>
 
-      <div className="w-full aspect-square flex-1 bg-neutral-950 rounded-[15px] h-full">
+      <div className="w-full aspect-square flex-1 bg-neutral-950 rounded-[15px] h-full overflow-hidden">
         {data.content}
       </div>
     </div>
@@ -119,7 +171,7 @@ const Card = ({ data, i }: { data: any; i: number }) => {
             {data.button}
           </div>
 
-          <div className="flex-1 bg-neutral-950 rounded-[25px] h-full">
+          <div className="max-w-1/2 flex-1 bg-neutral-950 rounded-[25px] h-full overflow-hidden">
             {data.content}
           </div>
         </div>
