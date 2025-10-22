@@ -7,6 +7,7 @@ import { FaTiktok } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 
 import config from "@/config.json";
+import NewsletterInput from "./NewsletterInput";
 
 const Footer = () => {
   const SOCIAL_LINK_ICON_SIZE = 20;
@@ -37,6 +38,10 @@ const Footer = () => {
       >
         Download App
       </Link>
+
+      <div className="divider my-5 md:my-0"></div>
+
+      <NewsletterInput />
 
       <div className="divider my-5 md:my-0"></div>
 

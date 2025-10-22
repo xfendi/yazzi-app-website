@@ -45,7 +45,7 @@ const PublicProfiles = () => {
       setIsLoading(true);
       setNotFound(false);
       try {
-        const res = await fetch("/api/public-profiles", { cache: "no-store" });
+        const res = await fetch("/api/public-profiles");
         const json = await res.json();
         if (json.ok && Array.isArray(json.data) && json.data.length > 0) {
           setProfiles(json.data);

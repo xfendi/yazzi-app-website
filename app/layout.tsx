@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import AOSInitializer from "@/components/AOSInitializer";
 import ConvexProviderClient from "@/components/ConvexClient";
+import { Toaster } from "react-hot-toast";
 
 import "./globals.css";
 
@@ -62,6 +63,7 @@ export default function RootLayout({
       <body className="bg-neutral-950 text-white overflow-x-hidden">
         <Analytics />
         <AOSInitializer />
+        <Toaster position="bottom-right" reverseOrder={false} />
         <ConvexProviderClient>{children}</ConvexProviderClient>
       </body>
     </html>

@@ -10,7 +10,8 @@
   --border-secondary: rgba(255, 255, 255, 0.05);
 }
 
-.btn-outline {
+.btn-outline,
+input {
   padding: 8px 16px;
   outline: none;
   border: none;
@@ -23,7 +24,8 @@
   justify-content: center;
 }
 
-.btn-outline {
+.btn-outline,
+input {
   border: 2px solid var(--border-secondary);
 }
 
@@ -72,4 +74,9 @@
 .divider {
   width: 100%;
   border-top: 1px solid var(--border-secondary);
+}
+
+input {
+  cursor: auto !important;
+  display: block !important;
 }
