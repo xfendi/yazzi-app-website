@@ -19,7 +19,7 @@ const HomePage = () => {
       <Header />
       <Features />
 
-      <section className="w-full flex flex-col gap-5 justify-center items-center text-neutral-700 !pb-0">
+      <section className="flex flex-col gap-5 justify-center items-center text-neutral-700 !pb-0">
         <RiScrollToBottomLine size={75} className="object-contain transition-transform duration-300 hover:scale-110" />
         <p className="text-2xl font-semibold">Keep scroling down</p>
       </section>

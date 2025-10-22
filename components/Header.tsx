@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Header = () => {
@@ -25,6 +26,10 @@ const Header = () => {
         SM based app that connects music with friends and sharing your energy
         with vibe!
       </div>
+
+      <Link href="/download" className="btn-outline primary rounded big">
+        Download App
+      </Link>
     </section>
   );
 };

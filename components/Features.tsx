@@ -124,7 +124,7 @@ const Features = () => {
   return width < 768 ? (
     <section id="features" className="flex flex-col gap-[25px] !pb-0">
       {cardsData.map((c, i) => (
-        <MobileCard data={c} key={i} />
+        <MobileCard data={c} key={i} i={i} />
       ))}
     </section>
   ) : (
@@ -136,9 +136,11 @@ const Features = () => {
   );
 };
 
-const MobileCard = ({ data }: { data: any }) => {
+const MobileCard = ({ data, i }: { data: any; i: number }) => {
   return (
     <div
+      data-aos="fade-up"
+      data-aos-delay={i * 100 + 300}
       className={`flex flex-col gap-10 items-center w-full p-5 !pt-10 rounded-[20px] ${data.colorClass}`}
     >
       <div className="flex-1 flex flex-col gap-5 items-center text-center">
@@ -155,9 +157,9 @@ const MobileCard = ({ data }: { data: any }) => {
 
 const Card = ({ data, i }: { data: any; i: number }) => {
   return (
-    <div className="cardContainer">
+    <div className="cardContainer pointer-events-none">
       <div
-        className={`card ${data.colorClass}`}
+        className={`card ${data.colorClass} pointer-events-auto`}
         style={{ top: `calc(10vh + ${i * 25}px)` }}
       >
         <div className="flex gap-10 items-center w-full">

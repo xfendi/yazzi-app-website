@@ -55,7 +55,7 @@ const NavBar = () => {
         >
           {width < 768 && showMenu && (
             <div
-              className="bg-[rgba(0,0,0,0.9)] fixed h-screen  -top-[40px] -left-[40px] -right-[40px]"
+              className="bg-[rgba(0,0,0,0.9)] fixed h-screen -top-[40px] -left-[40px] -right-[40px]"
               onClick={() => setShowMenu(false)}
             ></div>
           )}
@@ -80,11 +80,18 @@ const NavBar = () => {
                 Our Features
               </Link>
             </li>
+            {width < 768 && (
+              <li>
+                <Link href="/download" className="btn-outline primary rounded">
+                  Download
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
 
         {width > 768 && (
-          <Link href="/download" className="btn-outline primary rounded">
+          <Link href="/download" className="btn-outline light rounded">
             Download
           </Link>
         )}
